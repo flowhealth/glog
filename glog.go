@@ -391,19 +391,22 @@ type flushSyncWriter interface {
 	io.Writer
 }
 
-func OverrideVerbosityFlag(v int) {
-	logging.verbosity = v
+func OverrideVerbosityFlag(v string) {
+	logging.verbosity.Set(v)
 }
 
-func OverrideTraceLocationFlag(v bool) {
-	logging.traceLocation = v
+func OverrideTraceLocationFlag(v string) {
+	logging.traceLocation.Set(v)
 }
 
 func OverrideVmoduleFlag(v string) {
-	spec := &moduleSpec{}
-	spec.Set(v)
-	logging.vmodule = spec
+	logging.vmodule.Set(v)
 }
+
+func OverrideSeverityThreshold(v string) {
+	logging.stderrThreshold.Set(v)
+}
+
 
 func OverrideLogToStderrFlag(v bool) {
 	logging.toStderr = v
